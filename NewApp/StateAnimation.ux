@@ -1,0 +1,20 @@
+<StateGroup ux:Name="state" Transition="Exclusive" Rest="loginButtonState">
+	<State Name="loginButtonState">
+		<Move   Target="whiteRect" RelativeTo="PositionOffset" RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Resize Target="whiteRect" RelativeTo="Size"           RelativeNode="signupButton" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Move   Target="greenRect" RelativeTo="PositionOffset" RelativeNode="submitButtonCollapsed" Vector="1" Duration="0.2" DurationBack="0"/>
+		<Resize Target="greenRect" RelativeTo="Size"           RelativeNode="submitButtonCollapsed" Vector="1" Duration="0.2" DurationBack="0"/>
+
+		<Set whiteRect.LayoutMaster="signupButton" Delay="0.2"/>
+		<Set greenRect.LayoutMaster="submitButtonCollapsed" Delay="0.2"/>
+
+		<Set whiteRectCornerRadiusAttractor.Value="25"/>
+		<Set showGreenRect.Value="false" />
+
+		<Change startPanel.IsEnabled="true" DelayBack="0" />
+		<Set moveLogo.Value="false" />
+		<SendToBack Target="addButtonPanel" />
+	</State>
+
+	
+</StateGroup>
