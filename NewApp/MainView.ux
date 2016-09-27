@@ -7,23 +7,164 @@
   	<ClientPanel Color="#999999">
 
         <Navigator DefaultTemplate="home">
+            <!-- 登录页面 -->
             <HomePage ux:Template="home" router="router" />
+              <!-- 主页面 -->
             <EditHikePage ux:Template="editHike" router="router" />
+            <!-- 搜索配对 -->
             <FindPage ux:Template="find" router="router"/>
-
+          <!-- 查看用户资料 -->
             <ProfilePage ux:Template="profile" router="router" />
+            <!-- 社交页面，类似微博详情/说说详情 -->
+            <SocialDetailPage ux:Template="socialDetail" router="router" />
         </Navigator>
 
-         <Page ux:Class="ProfilePage">
+         <Page ux:Class="SocialDetailPage" Color="White">
             <Router ux:Dependency="router" />
             <!-- <JavaScript File="FindPage.js" /> -->
-             <StackPanel>
-                <Button Text="GoBack" Clicked="{goBack}" Alignment="Left" />
-                   <Image File="Images/findBg.png"  Width="100%" Height="100%" />
+            <JavaScript>
+                function goBack() {
+                 router.goBack();
+                                }
+
+                module.exports = {
+                    goBack: goBack,
+                     mockItems: ["#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9"]
+                };
+             
+            </JavaScript>
+
+            <StackPanel Margin="20">
+                <StatusBarBackground />
+            <iOS.StatusBarConfig Style="Light"/>
+                        <DockPanel Height="20" Margin="10" Alignment="Left" >  
+                            <Button Text="back"  Clicked="{goBack}" >
+                                
+                             
+                            </Button>
+                            
+                        </DockPanel>
+                       <DockPanel Height="320" Margin="10">
+                          <StackPanel ItemSpacing="15" Height="320"  Alignment="VerticalCenter">
+                              <Grid Columns="auto,1*,auto" Height="50" Dock="Top" Margin="5">
+                                  <Circle Color="#FFC0CB" Width="50" Height="50" Dock="Left"/>
+                                 <StackPanel >
+                                       <Text   Color="Black" Height="20" Width="50%" Alignment="TopLeft" FontSize="15" Value="nickName" Margin="5,0"/>
+                                       <Text   Color="Black" Height="10" Width="50%" Alignment="Left" FontSize="12" Value="city" Margin="5,0"/>
+                                      </StackPanel>
+                                <Text   Color="Gray" Height="10" Width="60%" Alignment="Right" FontSize="12" Value="xx minutes ago" />
+                                </Grid>
+                                <Image File="Images/goodGirl.jpg"  Width="400" Height="200" > </Image>
+                                <Text   Color="Gray" Height="50" Width="100%" Alignment="Left" FontSize="15" Value="It's a good day,I should a good boy" />
+                            </StackPanel>
+                        </DockPanel>
+                      <Grid Columns="1*,1*,1*" Height="30" Width="300" Dock="Top" >
+                                 <Rectangle Alignment="Center" Height="100%"  >
+                                 <Stroke Width="2" Brush="#000" />
+                                 <Button Text="repeat" Clicked="{goBack}" Margin="5"/>
+                               
+                                 </Rectangle>
+                                    <Rectangle Alignment="Center" Height="100%"  >
+                                 <Stroke Width="2" Brush="#000" />
+                                 <Button Text="comment" Clicked="{goBack}" Margin="5"/>
+                               
+                                 </Rectangle>
+                                    <Rectangle Alignment="Center" Height="100%"  >
+                                 <Stroke Width="2" Brush="#000" />
+                                 <Button Text="like num" Clicked="{goBack}" Margin="5"/>
+                                 </Rectangle>
+                    </Grid>
+                    <ScrollView Height="560">
+                        <StackPanel Margin="20" Clicked="{goToDetail}">
+                            <Each Items="{mockItems}">
+                                <Button >
+                                <DockPanel  Margin="10">
+                                    <StackPanel ItemSpacing="15"   Alignment="VerticalCenter">
+                                        <Grid Columns="auto,1*,auto" Height="50" Dock="Top" Margin="5">
+                                            <Circle Color="{}" Width="30" Height="30" Dock="Left"/>
+                                            <StackPanel >
+                                                <Text   Color="Black" Height="20" Width="50%" Alignment="TopLeft" FontSize="15" Value="nickName" Margin="5,0"/>
+                                                <Text   Color="Black" Height="10" Width="50%" Alignment="Left" FontSize="12" Value="city" Margin="5,0"/>
+                                            </StackPanel>
+                                            <Text   Color="Gray" Height="10" Width="60%" Alignment="Right" FontSize="12" Value="xx minutes ago" />
+                                       </Grid>
+                                       <!-- <Image File="Images/goodGirl.jpg"  Width="400" Height="200" > </Image> -->
+                                       <Text   Color="Gray" Height="50" Width="100%" Alignment="Left" FontSize="15" Value="wow~ I think you are right!" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </Button>
+                            </Each>
+                        </StackPanel>
+                    </ScrollView>
+            </StackPanel>
+        </Page>
+
+
+
+         <Page ux:Class="ProfilePage" Color="White">
+            <Router ux:Dependency="router" />
+            <!-- <JavaScript File="FindPage.js" /> -->
+            <JavaScript>
+                function goBack() {
+                 router.goBack();
+                                }
+
+                module.exports = {
+                    goBack: goBack
+                };
+            </JavaScript>
+             <StackPanel Height="50" Width="80%" Alignment="TopCenter" Orientation="Horizontal">
+                   <Grid Columns="1*,4*,2*" Height="50" Width="300" Dock="Top" >
+                    <Button Text="back" Clicked="{goBack}" Alignment="Left" />
+                    <Text   Color="Black" Height="10"  Alignment="Center" FontSize="12" Value="* * * * O(Stars)" />
+                    <Text   Color="Black" Height="10"  Alignment="Right" FontSize="12" Value="Setting with the man" Margin="10,0"/>
+                    </Grid>
+            </StackPanel>
+             <StackPanel Height="50" Width="100%" Alignment="Center">
+                  
+                    <Rectangle Alignment="Center" Height="50%">
+                                <Stroke Width="2" Brush="#000" />
+                                
+                                <StackPanel ItemSpacing="5" Margin="10">
+                                  <Text Value=" Cycle Images ,users can left/right "  Width="100%" Height="100%" Alignment="Center"/>
+                                </StackPanel>
+
+                                <WhilePressed>
+                                     <Scale Factor="0.98" Duration="0.1"/>
+                                </WhilePressed>
+
+                    </Rectangle>
+                    
              </StackPanel>
-         
-        
-     
+            <StackPanel Height="30%" Width="100%" Alignment="BottomCenter">
+                <Rectangle Alignment="BottomCenter" Height="100" Width="80%">
+                                <Stroke Width="2" Brush="#000" />
+                                
+
+                                <StackPanel ItemSpacing="5" Margin="10">
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <Text Value="name " FontSize="20" Width="100%" Height="100%" Alignment="Center"/>
+                                        <Text Value="age " FontSize="15" Width="100%" Height="100%" Alignment="Center"/>
+                                    </StackPanel>
+                                     <!-- <StackPanel Orientation="Horizontal" Margin="5"> -->
+                                     <Grid Columns="4*,2*" Height="50" Width="300"  >
+                                        <Text Value=" Introduce With People " FontSize="15" Width="100%" Height="100%" Alignment="Center"/>
+                                        <Rectangle Alignment="TopCenter" Height="50%" >
+                                             <Stroke Width="2" Brush="#000" />
+                                                <Text Value="like / chat" FontSize="15" Width="100%" Height="100%" Alignment="Center" Margin="5"/>
+                                            <WhilePressed>
+                                                <Scale Factor="0.90" Duration="0.1"/>
+                                            </WhilePressed>
+                                        </Rectangle>
+                                     </Grid>
+                                    <!-- </StackPanel> -->
+                                
+                                </StackPanel>
+
+                           
+
+                    </Rectangle>
+             </StackPanel>
         </Page>
 
         <Page ux:Class="FindPage">
@@ -60,30 +201,82 @@
             <Router ux:Dependency="router" />
             <JavaScript File="EditHikePage.js" />
 
-            <StackPanel>
+            <!-- <StackPanel Height="100%"> -->
+
                 <!-- <Grid Columns="auto,1*,auto" Height="50" Dock="Top" Color="#7E58A7"> -->
                     <!-- <Button Text="GoBack" Clicked="{goBack}" /> -->
-                    <Panel Width="100%" Height="50"  Color="#7E58A7">
-                    <Text ux:Name="titleText" Value="LEMON"  FontSize="25" Alignment="Center"/>
+            <Panel Width="100%" Height="60"  Color="#7E58A7" Alignment="TopCenter">
+            <Text ux:Name="titleText" Value="LEMON"  FontSize="25" Alignment="Center"/>
+            </Panel>
+
+            <StackPanel Alignment="BottomCenter" Height="40" Width="100%" Color="#7E58A7">
+                 <Grid >
+               
+                     <Column ux:Name="col1" Width="1" WidthMetric="Proportion"/>
+                     <Column ux:Name="col2" Width="1" WidthMetric="Proportion"/>
+                     <Column ux:Name="col3" Width="1" WidthMetric="Proportion"/>
+                     <Column ux:Name="col4" Width="1" WidthMetric="Proportion"/>
+
+               
+                     <Image ux:Class="TabIcon"  Height="30" Alignment="Center"/>
+
+                     <Panel HitTestMode="LocalBounds">
+                        <!-- <Grid Columns="auto,1*" Margin="30,0" Alignment="Center"> -->
+                            <TabIcon ux:Name="c1" File="Images/basket.png" />
+                            <!-- <TabHeader ux:Name="h1" Value="Products" /> -->
+                            
+                        <!-- </Grid> -->
+                        <Clicked>
+                            <Set nav.Active="page1" />
+                        </Clicked>
                     </Panel>
+                    <Panel HitTestMode="LocalBounds">
+                        <!-- <Grid Columns="auto,1*" Margin="30,0" Alignment="Center"> -->
+                            <TabIcon ux:Name="c2" File="Images/accountbalance.png" />
+                            <!-- <TabHeader ux:Name="h2" Value="Places"/> -->
+                         <!-- </Grid> -->
+                        <Clicked>
+                             <Set nav.Active="page2" />
+                        </Clicked>
+                    </Panel>
+                    <Panel HitTestMode="LocalBounds">
+                        <!-- <Grid Columns="auto,1*" Margin="30,0" Alignment="Center"> -->
+                            <TabIcon ux:Name="c3" File="Images/play.png" />
+                            <!-- <TabHeader ux:Name="h3" Value="Reviews"/> -->
+
+                        <!-- </Grid> -->
+                        <Clicked>
+                             <Set nav.Active="page3" />
+                        </Clicked>
+                    </Panel>
+                    <Panel HitTestMode="LocalBounds">
+                        <!-- <Grid Columns="auto,1*" Margin="30,0" Alignment="Center"> -->
+                            <TabIcon ux:Name="c4" File="Images/person.png"  />
+                            <!-- <TabHeader ux:Name="h4" Value="Friends"/> -->
+                        <!-- </Grid> -->
+                        <Clicked>
+                            <Set nav.Active="page4" />
+                         </Clicked>
+                    </Panel>
+                </Grid>
+            </StackPanel>
                     <!-- <Image File="Images/search.png"  Width="30" Height="30" Margin="10" Clicked="{goToFind}"/> -->
                 <!-- </Grid> -->
-            <PageControl ux:Name="nav" >
+            <PageControl ux:Name="nav" Alignment="Center">
                 <NavigationMotion GotoEasing="BackOut" />
-                <Image ux:Class="PagePlaceholder" Margin="8,10,8,0" StretchMode="UniformToFill" ContentAlignment="Top"/>
+                <Image ux:Class="PagePlaceholder" Margin="0,100" StretchMode="UniformToFill" ContentAlignment="Top"/>
 
-                <Page ux:Name="page1">
+                <Page ux:Name="page1"  Alignment="TopCenter">
                     <JavaScript File="EditHikePage.js" />
                     <JavaScript>
-                        function goToFind() {
-                            router.push("find");
-                        }
+                      
                         module.exports = {
                         mockItems: ["#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9"],
-                        goToFind: goToFind
+                  
                         };
                     </JavaScript>
-                    <Button Clicked="{goToFind}" Width="50" Height="50" Alignment="TopRight" Margin="5">
+                      <StackPanel Alignment="TopRight">
+                  <Button Clicked="{goToFind}" Width="50" Height="50"  Margin="5">
                         <Panel Width="50" Height="50"  >
                              <Text Value="+" FontSize="30" TextColor="White" Alignment="Center"/>
                              <Rectangle  Color="Green"  CornerRadius="25" Opacity="1.0" >
@@ -91,41 +284,52 @@
                             </Rectangle>
                         </Panel>
                     </Button>
-
-                    <ScrollView Height="560">
-                        <StackPanel Margin="20">
+                </StackPanel>
+                    <!-- <StackPanel Height="50%"> -->
+              <!--  <Rectangle Height="60">
+               </Rectangle> -->
+                    <ScrollView  Margin="0,60,0,40">
+                        <StackPanel Margin="0,0,0,0">
                             <Each Items="{mockItems}">
-                                <DockPanel Height="100">
+                                <Button Clicked="{goToProfile}">
+                                <DockPanel Height="120">
                                     <Circle Color="{}" Width="50" Height="50" Dock="Left"/>
                                     <StackPanel ItemSpacing="15" Height="100" Margin="10,0" Alignment="VerticalCenter">
-                                        <Grid Columns="auto,1*,auto" Height="20" Dock="Top">
-                                            <Text   Color="Black" Height="10" Width="50%" Alignment="Left" FontSize="15" Value="nickName" />
-                                            <Text   Color="Gray" Height="10" Width="50%" Alignment="Right" FontSize="12" Value="xx minutes ago" />
+                                        <Grid Columns="1*,1*" Height="20" Dock="Top">
+                                            <Text   Color="Black" Height="10"  Alignment="Left" FontSize="15" Value="nickName" />
+                                            <Text   TextWrapping="Wrap" Color="Gray" Height="20"  Alignment="Right" FontSize="12" Value="xx minutes ago" />
                                        </Grid>
                                         <StackPanel Orientation="Horizontal" >
                                             <Text   Color="Black" Height="10" Width="100%" Alignment="Left" FontSize="12" Value="sex" />
                                             <Text   Color="Black" Height="10" Width="100%" Alignment="Left" FontSize="12" Value="city" Margin="10,0"/>
                                         </StackPanel>
-                                       <Text   Color="Gray" Height="20" Width="100%" Alignment="Left" FontSize="15" Value="I will find my lover who is kind,handsome" />
+                                       <Text TextWrapping="Wrap"  Color="Gray" Height="20" Width="80%" Alignment="Left" FontSize="15" Value="I will find my lover who is kind,handsome" Margin="0,0,5,0" />
                                     </StackPanel>
                                 </DockPanel>
+                                </Button>
                             </Each>
                         </StackPanel>
                     </ScrollView>
-
-                    
+                    <!-- </StackPanel> -->
+                      
                 </Page>
 
                 <Page ux:Name="page2">
                     <!-- <PagePlaceholder File="Images/screen2.png" />     -->
                     <JavaScript>
+                        function goToDetail() {
+                            router.push("socialDetail");
+                        }
+
                         module.exports = {
-                        mockItems: ["#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9"]
+                            goToDetail: goToDetail,
+                            mockItems: ["#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9","#47BDF9"]
                         };
                     </JavaScript>
-                    <ScrollView Height="560">
-                        <StackPanel Margin="20">
+                    <ScrollView Margin="0,60,0,40">
+                        <StackPanel Margin="20" Clicked="{goToDetail}">
                             <Each Items="{mockItems}">
+                                <Button >
                                 <DockPanel Height="320" Margin="10">
                                     <StackPanel ItemSpacing="15" Height="320"  Alignment="VerticalCenter">
                                         <Grid Columns="auto,1*,auto" Height="50" Dock="Top" Margin="5">
@@ -140,6 +344,7 @@
                                        <Text   Color="Gray" Height="50" Width="100%" Alignment="Left" FontSize="15" Value="It's a good day,I should a good boy" />
                                     </StackPanel>
                                 </DockPanel>
+                            </Button>
                             </Each>
                         </StackPanel>
                     </ScrollView>
@@ -152,7 +357,7 @@
                         people: ["Tom","Jen","Jack","Cook","Tiger","Python","Wang","Tian"]
                         };
                     </JavaScript>
-                    <ScrollView Padding="30" Height="560">
+                    <ScrollView Margin="0,70,0,40" Width="300">
                         <StackPanel ItemSpacing="20">
                           <Each Items="{people}">
                               <Button>
@@ -160,8 +365,11 @@
                                 <Stroke Width="2" Brush="#000" />
                                 
                                 <StackPanel ItemSpacing="5" Margin="10">
-                                  <Text Value="{}" FontSize="20" TextColor="#000" Margin="0"/>
-                                  <Text Value="some message content... " TextColor="#aaa"/>
+                                    <StackPanel ItemSpacing="5" Orientation="Horizontal">
+                                        <Circle Color="Blue" Width="30" Height="30" Dock="Left"/>
+                                        <Text Value="{}" FontSize="20" TextColor="#000" Margin="0" Alignment="Center"/>
+                                    </StackPanel>
+                                    <Text Value="some message content... " TextColor="#aaa"/>
                                 </StackPanel>
 
                                 <WhilePressed>
@@ -176,11 +384,9 @@
                 
                 </Page>
 
-                <Page ux:Name="page4" Color="Gray">
-                    <ScrollView  Height="560" >
-                        <!-- Padding="30" -->
-                     
-                     <StackPanel ItemSpacing="20">
+                <Page ux:Name="page4" Color="Gray" >
+                    <ScrollView  Margin="0,60,0,40" Width="300"> 
+                     <StackPanel Margin="0">
                          <Image File="Images/avatar.jpg"  Height="80" Width="80" Margin="30,30"/>
                          <Panel Color="White" Width="100%" Height="110" Margin="0,5">
                                 <StackPanel >
@@ -231,64 +437,14 @@
                      </StackPanel>
                     <!-- <PagePlaceholder  /> -->
                     </ScrollView>
-                        <Image File="Images/screen4.png" Alignment="TopCenter" Height="200">
+                        <Image File="Images/screen4.png" Alignment="TopCenter" Height="200" Width="100%">
                             <Blur Radius="20"/>
                         </Image>
                 </Page>
             </PageControl>
 
-            <Panel Dock="Bottom" Height="60" Color="#7E58A7">
-                 <Grid >
-               
-                     <Column ux:Name="col1" Width="1" WidthMetric="Proportion"/>
-                     <Column ux:Name="col2" Width="1" WidthMetric="Proportion"/>
-                     <Column ux:Name="col3" Width="1" WidthMetric="Proportion"/>
-                     <Column ux:Name="col4" Width="1" WidthMetric="Proportion"/>
-
-               
-                     <Image ux:Class="TabIcon" Width="25" Height="25" />
-
-                     <Panel HitTestMode="LocalBounds">
-                        <Grid Columns="auto,1*" Margin="30,0" Alignment="Center">
-                            <TabIcon ux:Name="c1" File="Images/basket.png" />
-                            <!-- <TabHeader ux:Name="h1" Value="Products" /> -->
-                            
-                        </Grid>
-                        <Clicked>
-                            <Set nav.Active="page1" />
-                        </Clicked>
-                    </Panel>
-                    <Panel HitTestMode="LocalBounds">
-                        <Grid Columns="auto,1*" Margin="30,0" Alignment="Center">
-                            <TabIcon ux:Name="c2" File="Images/accountbalance.png" />
-                            <!-- <TabHeader ux:Name="h2" Value="Places"/> -->
-                         </Grid>
-                        <Clicked>
-                             <Set nav.Active="page2" />
-                        </Clicked>
-                    </Panel>
-                    <Panel HitTestMode="LocalBounds">
-                        <Grid Columns="auto,1*" Margin="30,0" Alignment="Center">
-                            <TabIcon ux:Name="c3" File="Images/play.png" />
-                            <!-- <TabHeader ux:Name="h3" Value="Reviews"/> -->
-
-                        </Grid>
-                        <Clicked>
-                             <Set nav.Active="page3" />
-                        </Clicked>
-                    </Panel>
-                    <Panel HitTestMode="LocalBounds">
-                        <Grid Columns="auto,1*" Margin="30,0" Alignment="Center">
-                            <TabIcon ux:Name="c4" File="Images/person.png"  />
-                            <!-- <TabHeader ux:Name="h4" Value="Friends"/> -->
-                        </Grid>
-                        <Clicked>
-                            <Set nav.Active="page4" />
-                         </Clicked>
-                    </Panel>
-                </Grid>
-                </Panel>
-            </StackPanel>
+            
+            <!-- </StackPanel> -->
         </Page>
 
 

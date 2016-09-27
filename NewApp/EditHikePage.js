@@ -10,11 +10,15 @@ function goToFind() {
     router.push("find");
 }
 
+function goToProfile() {
+    router.push("profile");
+}
 
 
 
 module.exports = {
 	name: name,
 	goBack: goBack,
-	goToFind: goToFind
+	goToFind: goToFind,
+	goToProfile: goToProfile
 };
